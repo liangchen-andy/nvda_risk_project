@@ -1,6 +1,7 @@
 .venv/
 .pixi/
 .pytest_cache/
+.coverage
 node_modules/
 _build/
 __pycache__/

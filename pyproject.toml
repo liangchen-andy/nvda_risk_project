@@ -36,10 +36,10 @@ content-type = "text/markdown"
 text = "MIT"
 
 [project.urls]
-Changelog = "https://github.com/OpenSourceEconomics/final-project-liangchen-andy"
-Documentation = "https://github.com/OpenSourceEconomics/final-project-liangchen-andy"
-Github = "https://github.com/OpenSourceEconomics/final-project-liangchen-andy"
-Tracker = "https://github.com/OpenSourceEconomics/final-project-liangchen-andy/issues"
+Changelog = "https://github.com/liangchen-andy/nvda_risk_project"
+Documentation = "https://github.com/liangchen-andy/nvda_risk_project"
+Github = "https://github.com/liangchen-andy/nvda_risk_project"
+Tracker = "https://github.com/liangchen-andy/nvda_risk_project/issues"
 
 # ======================================================================================
 # Build system configuration
@@ -93,6 +93,7 @@ python-kaleido = ">=1.1"
 statsmodels = "*"
 ty = "*"
 yfinance = "*"
+perl = ">=5.32.1,<5.33"
 
 [tool.pixi.pypi-dependencies]
 nvda_risk_project = { path = ".", editable = true }
@@ -216,4 +217,3 @@ skip = "package-lock.json,node_modules,pixi.lock,.codespell-ignore-words"
 line_length = 88
 none_representation = "null"
 preserve_quotes = true
-
