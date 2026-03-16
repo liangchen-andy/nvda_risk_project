@@ -1,44 +1,34 @@
-(dag)=
+# Pipeline Map
 
-# Directed Acyclic Graphs
+The top-level workflow is intentionally simple:
 
-The way to specify dependencies between data, code and tasks to perform for a computer
-is a directed acyclic graph. A graph is simply a set of nodes (files, in our case) and
-edges that connect pairs of nodes (tasks to perform). Directed means that the order of
-how we connect a pair of nodes matters, we thus add arrows to all edges. Acyclic means
-that there are no directed cycles: When you traverse a graph in the direction of the
-arrows, there may not be a way to end up at the same node again.
-
-This is the dependency graph of the template project (right-click and open the image in
-a different window to zoom in)
-
-```{figure} ../figures/dag.svg
+```text
+raw market and macro sources
+  -> cached and snapshot inputs
+  -> cleaned daily panel
+  -> aligned monthly panel
+  -> risk metrics and diagnostics
+  -> figures and tables
+  -> paper and presentation artifacts
 ```
 
-The nodes have different shapes in order to distinguish tasks from files. The rectangles
-denote targets or dependencies like figures, data sets or stored models. The hexagons
-denote task files. Even in this simple template project we already see that the
-dependency structure can be complex.
+## Why This Matters
 
-In a first run, all targets have to be generated, of course. In later runs, a target
-only needs to be re-generated if one of its direct **dependencies** changes. E.g. when
-we alter `documents/presentation.md` (mid-right) we need to rebuild only the
-presentation pdf file. If we alter
-`src/template_project/data_management/task_data_management_template.py` (top-right),
-however, we need to rebuild everything. Note, that the only important thing at this
-point is to understand the general idea.
+`pytask` tracks dependencies between these stages, so a change in one upstream task only
+rebuilds the downstream artifacts that depend on it. That gives the project two useful
+properties:
 
-Of course this is overkill for a simple example -- we could easily keep the code closer
-together than this. But such a strategy does not scale to serious papers with many
-different specifications. As a case in point, consider the DAG for an early version of
-{cite}`Gaudecker2015`:
+- reruns stay fast when only a small part of the pipeline changes,
+- output files can be traced back to the code and data that produced them.
 
-```{figure} ../figures/pfefficiency.jpg
----
-width: 50em
----
-```
+## Public Artifacts Produced By The Graph
 
-Do you want to keep those dependencies in your head? Or would it be useful to specify
-them once and for all in order to have more time for thinking about research? The next
-section shows you how to do that.
+- `documents/public/fig_volatility.png`
+- `documents/public/fig_var_exceedances.png`
+- `documents/public/fig_drawdown.png`
+- `documents/public/fig_beta_rolling.png`
+- `documents/tables/estimation_results.md`
+- `documents/tables/diagnostics.md`
+
+This makes the build graph part of the presentation story, not just an internal
+engineering detail.

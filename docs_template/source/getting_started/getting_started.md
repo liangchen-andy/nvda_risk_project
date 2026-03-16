@@ -1,37 +1,48 @@
-(getting_started)=
-
 # Getting Started
 
-The goal of this project is to get you from a fresh clone to a working research paper in
-less than five minutes.
+The fastest way to evaluate the project is to run the tests and rebuild the pipeline
+from scratch.
 
-## The "Magic" Moment
+## Requirements
 
-Once your system is {ref}`prepared <preparing_your_system>`, you can experience the
-reproducibility of this template by running a single command.
+- `pixi`
+- `git`
+- A working LaTeX installation if you want to export the paper as PDF
 
-1. **Clone the repository** (or your new project).
-1. **Run the analysis and view the results**:
+`nodejs` is provided through the Pixi environment, but the frontend dependencies still
+need to be installed once via `npm install`.
+
+## Quick Start
 
 ```bash
-# View the research paper in your browser
-pixi run view-paper
-
-# View the presentation slides
-pixi run view-pres
+pixi install
+pixi run npm install
+pixi run pytest -q
+pixi run pytask
 ```
 
-These commands will automatically:
+## What You Should See
 
-- Download and install all necessary dependencies (Python, Node.js, libraries) into a
-  private project environment.
-- Run the entire computational pipeline (data cleaning, analysis, figure generation).
-- Launch a local web server to display the final outputs.
+After a successful run, the repository will contain:
 
-## Next Steps
+- cleaned data panels in `bld/data`
+- metrics and diagnostics in `bld/metrics`
+- figures in `documents/public`
+- summary tables in `documents/tables`
+- a presentation export in `presentation.pdf`
 
-Once you have verified that the template runs on your machine, you can proceed to:
+## Useful Follow-Up Commands
 
-- {ref}`preparing_your_system`: Detailed instructions on installing Pixi.
-- {ref}`customising_the_template`: How to adapt this structure for your own research.
-- {ref}`second_machine`: How to ensure your co-authors can run your project.
+```bash
+pixi run pytask -k diagnostics --force
+pixi run pytask -k figure --force
+pixi run view-paper
+pixi run view-pres
+pixi run docs
+```
+
+## Recommended Reading Order
+
+1. Inspect `documents/tables/diagnostics.md` to confirm the latest quality gates.
+2. Review `documents/tables/estimation_results.md` for the consolidated output metrics.
+3. Open the exported figures in `documents/public` for presentation-ready visuals.

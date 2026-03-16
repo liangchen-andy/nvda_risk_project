@@ -6,15 +6,17 @@ lineNumbers: false
 drawings:
   persist: false
 transition: fade
-title: NVDA Risk Analysis
+title: NVDA Risk Analysis Project
 mdc: true
 defaults:
   layout: center
 ---
 
-# NVDA Risk Analysis
+# NVDA Risk Analysis Project
 
-Reproducible engineering pipeline for market risk diagnostics
+Diagnostics-first, reproducible risk analytics for NVIDIA (`NVDA`)
+
+Sample window: `2020-01-01` to `2024-12-31`
 
 LIANGCHEN CHEN
 
@@ -22,97 +24,113 @@ LIANGCHEN CHEN
 layout: default
 ---
 
-# Project Goal
+# Why This Project Exists
 
-- Build a fully reproducible and offline-first NVDA risk pipeline.
-- Make verification and diagnostics first-class outputs.
-- Deliver deterministic artifacts from data to report figures.
+- NVDA is a high-volatility, event-sensitive stock with multiple risk channels.
+- A one-off notebook can show point estimates, but it does not show data lineage,
+  fallback behavior, or build reliability.
+- This project treats reproducibility and diagnostics as part of the deliverable, not as
+  afterthoughts.
+
+---
+layout: default
+---
+
+# What The Pipeline Produces
 
 Pipeline:
 `data_management -> analysis -> final -> documents`
 
----
-layout: default
----
-
-# 1.0 Engineering Constraints
-
-- Data source priority: `cache -> snapshots -> online`.
-- Provenance required for every build (`data_provenance.json`).
-- Core functions must be test-covered with boundary cases.
-- Coverage gate enforced in CI (`pytest --cov-fail-under=80`).
-- Failures use fallback logic and must be recorded in diagnostics.
+- Shared daily and monthly panels
+- Five risk modules in one workflow
+- Presentation-ready figures and summary tables
+- Diagnostics, provenance, and scorecard artifacts
 
 ---
 layout: default
 ---
 
-# Risk Modules Implemented
+# Data Rules And Audit Trail
 
-- Market risk: rolling vol, VaR/ES, GARCH-t, VaR backtests.
-- Liquidity risk: dollar volume and Amihud ILLIQ.
-- Drawdown risk: drawdown path and MDD summary.
-- Systematic risk: static and rolling CAPM beta.
-- Macro risk: frequency-consistent regression path.
+- Sample window fixed to `2020-01-01` through `2024-12-31`
+- Source priority: `cache -> snapshots -> online`
+- Every build emits `data_provenance.json`
+- Diagnostics record consistency checks, fallback events, and status flags
+
+---
+layout: image-right
+image: ./public/fig_market_overview.png
+---
+
+# Risk Coverage At A Glance
+
+- Market risk
+- Liquidity risk
+- Drawdown risk
+- Systematic risk
+- Macro risk
+
+One pipeline produces all five views from a shared data backbone.
 
 ---
 layout: default
 ---
 
-# Diagnostics as Product
+# Selected Findings
 
-- `bld/metrics/diagnostics.csv`
-- `documents/tables/diagnostics.md`
-- `bld/checks/scorecard.json`
-
-Diagnostics include:
-
-- data source used, sample period, and missingness checks,
-- model status and fallback events,
-- VaR exceedance counts and backtest statistics,
-- cross-file consistency checks.
+- Annualized volatility: `33.3%`
+- Historical VaR (95%): `-13.8%`
+- Expected shortfall: `-17.3%`
+- Maximum drawdown: `-23.8%`
+- Median dollar volume: about `$746.9M`
+- Macro DGS10 coefficient: `0.175` with low explanatory power (`R^2 = 0.0007`)
 
 ---
 layout: image-right
 image: ./public/fig_volatility.png
 ---
 
-# Market Volatility
+# Volatility View
 
-Rolling volatility profile for NVDA over the configured sample window.
+The rolling volatility figure gives regime context and is exported directly into the
+paper and presentation workflow.
 
 ---
 layout: image-right
 image: ./public/fig_var_exceedances.png
 ---
 
-# VaR Exceedances
+# VaR Diagnostics
 
-Observed exceedances compared with expected exceedance rates by method.
+- Exceedance counts are compared with expected exceedance rates by method.
+- Backtests are paired with diagnostics so model failures do not stay silent.
 
 ---
 layout: image-right
 image: ./public/fig_drawdown.png
 ---
 
-# Drawdown Risk
+# Stress Visualization
 
-Drawdown trajectory and stress episodes in the sample period.
-
----
-layout: image-right
-image: ./public/fig_beta_rolling.png
----
-
-# Systematic Risk
-
-Rolling CAPM beta against market benchmark.
+- Drawdown figures make both depth and persistence visible.
+- Current summary outputs report a maximum drawdown of `-23.8%`.
 
 ---
 layout: default
 ---
 
-# Reproducibility Commands
+# Credibility Checks
+
+- Latest diagnostics result: `32/32` quality gates passing
+- Latest local verification baseline: `133` tests passed
+- Coverage baseline: `92.65%`
+- Public artifacts include diagnostics, scorecard, and provenance metadata
+
+---
+layout: default
+---
+
+# Reproduce The Project
 
 ```bash
 pixi install
@@ -121,7 +139,7 @@ pixi run pytest -q
 pixi run pytask
 ```
 
-Targeted reruns:
+Focused reruns:
 
 ```bash
 pixi run pytask -k diagnostics --force
