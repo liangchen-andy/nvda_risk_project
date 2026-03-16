@@ -2,6 +2,8 @@
 .pixi/
 .pytest_cache/
 .coverage
+CLAUDE.md
+GEMINI.md
 node_modules/
 _build/
 __pycache__/

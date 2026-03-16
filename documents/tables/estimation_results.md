@@ -1,0 +1,25 @@
+| risk_dimension   | metric                         |          value |
+|:-----------------|:-------------------------------|---------------:|
+| market           | volatility_annualized          |    0.332914    |
+| market           | var_95                         |   -0.137596    |
+| market           | es                             |   -0.172794    |
+| liquidity        | amihud_illiq_mean              |    2.97339e-11 |
+| liquidity        | dollar_volume_median           |    7.46914e+08 |
+| drawdown         | max_drawdown                   |   -0.237682    |
+| drawdown         | latest_drawdown                |   -0.228378    |
+| drawdown         | max_drawdown_duration          |   18           |
+| drawdown         | latest_drawdown_duration       |   18           |
+| systematic       | beta                           |   -0.355661    |
+| systematic       | alpha                          |    0.0194674   |
+| systematic       | beta_rolling_60m_latest        |   -0.355661    |
+| systematic       | beta_rolling_60m_valid_points  |    1           |
+| systematic       | beta_rolling_60m_fallback      |    0           |
+| systematic       | beta_rolling_252m_latest       |    0           |
+| systematic       | beta_rolling_252m_valid_points |    0           |
+| systematic       | beta_rolling_252m_fallback     |    1           |
+| macro            | intercept                      |   -0.00801092  |
+| macro            | beta_dgs10                     |    0.175363    |
+| macro            | beta_dgs10_tstat               |    0.922998    |
+| macro            | beta_dgs10_pvalue              |    0.356008    |
+| macro            | r_squared                      |    0.000656811 |
+| macro            | obs_count                      | 1305           |

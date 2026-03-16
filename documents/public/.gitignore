@@ -1,5 +1,9 @@
 *.svg
 *.png
 *.jpg
-# Override for static figures with
-!image.svg
+# Keep the curated figures referenced from the public-facing materials.
+!fig_beta_rolling.png
+!fig_drawdown.png
+!fig_market_overview.png
+!fig_var_exceedances.png
+!fig_volatility.png

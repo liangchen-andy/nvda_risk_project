@@ -7,7 +7,6 @@ project:
   description: Reproducible, offline-first NVDA risk analysis with diagnostics-first quality gates
   authors:
     - name: Liangchen Chen
-      affiliations: [Course Project]
   keywords: [risk management, reproducible research, nvda, finance]
   toc:
     - file: documents/paper.md

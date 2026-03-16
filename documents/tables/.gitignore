@@ -1,5 +1,6 @@
 *.tex
 *.md
 *.html
-# Override for static tables with
-!table.md
+# Keep the curated tables referenced from the README and paper.
+!diagnostics.md
+!estimation_results.md
