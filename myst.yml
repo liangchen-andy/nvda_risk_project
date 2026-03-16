@@ -1,0 +1,26 @@
+---
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: nvda-risk-project
+  title: NVDA Risk Analysis Project
+  description: Reproducible, offline-first NVDA risk analysis with diagnostics-first quality gates
+  authors:
+    - name: Liangchen Chen
+      affiliations: [Course Project]
+  keywords: [risk management, reproducible research, nvda, finance]
+  toc:
+    - file: documents/paper.md
+  exports:
+    - format: pdf
+      template: arxiv_nips
+      articles: documents/paper.md
+      parts:
+        abstract: abstract
+      bibtex: documents/refs.bib
+  exclude: [documents/presentation.md]
+site:
+  template: book-theme
+  options:
+    favicon: null
+    logo: null

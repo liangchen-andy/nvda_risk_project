@@ -1,0 +1,10 @@
+.venv/
+.pixi/
+.pytest_cache/
+node_modules/
+_build/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+bld/
