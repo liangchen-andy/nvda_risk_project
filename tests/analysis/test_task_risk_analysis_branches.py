@@ -43,14 +43,14 @@ def test_task_run_risk_module_covers_macro_and_non_macro_branches(tmp_path: Path
         },
     ).to_csv(macro_raw, index=False)
 
-    task_module.task_run_risk_module(
+    task_module._run_risk_module(
         dimension="macro",
         panel_data=monthly_panel,
         panel_daily_data=panel_daily,
         macro_raw_data=macro_raw,
         produces=macro_output,
     )
-    task_module.task_run_risk_module(
+    task_module._run_risk_module(
         dimension="liquidity",
         panel_data=monthly_panel,
         panel_daily_data=panel_daily,
