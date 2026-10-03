@@ -1,0 +1,24 @@
+{
+  "data_kind": "observed",
+  "retrieved_at_utc": "2026-10-03T10:14:25+00:00",
+  "sample": [
+    "2020-01-01",
+    "2024-12-31"
+  ],
+  "return_basis": "Yahoo adjusted close; USD; S&P 500 price-index benchmark",
+  "yield_units": "DGS10 percentage points, e.g. 4.0 means 4%",
+  "files": {
+    "nvda.json": {
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1577664000&period2=1735776000&interval=1d",
+      "sha256": "d91c4f81c6662b4fe49e6b73cae7fc278d4765522c28f82f07b5310d4e7c3ccf"
+    },
+    "sp500.json": {
+      "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1577664000&period2=1735776000&interval=1d",
+      "sha256": "d878bfce2887a2de4c963413b2c9ba93eccb286e0565b343073240f797b290d5"
+    },
+    "dgs10.csv": {
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2019-12-01&coed=2024-12-31",
+      "sha256": "61b27ee18ccd12d99bd4b0134ad7c5cdc6133ddb020fd0ddb4e5c402295677b9"
+    }
+  }
+}

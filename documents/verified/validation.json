@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "vendor_hashes_match": true,
+    "observed_instrument_usd": true,
+    "exact_xnys_sessions": true,
+    "adjusted_returns_finite": true,
+    "monthly_compounding_matches_prices": true,
+    "macro_alignment_no_future_fill": true,
+    "oos_training_precedes_forecast": true,
+    "forecasts_finite": true
+  },
+  "all_pass": true,
+  "input_manifest_sha256": "f505c7bb8d0db70fb3244a4a712e4e4460e9c06aeeac2514a2fe3c9e0b92c491"
+}

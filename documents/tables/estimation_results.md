@@ -1,3 +1,5 @@
+> **Legacy synthetic outputs.** These values are retained for traceability. See [verified observed-data results](../verified/RESULTS.md) and the [data audit](../DATA_AUDIT.md).
+
 | risk_dimension   | metric                         |          value |
 |:-----------------|:-------------------------------|---------------:|
 | market           | volatility_annualized          |    0.332914    |

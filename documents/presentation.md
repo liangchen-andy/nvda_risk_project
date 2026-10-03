@@ -14,6 +14,8 @@ defaults:
 
 # NVDA Risk Analysis Project
 
+Legacy synthetic demonstration. For observed-data results, see `documents/verified/RESULTS.md`.
+
 Diagnostics-first, reproducible risk analytics for NVIDIA (`NVDA`)
 
 Sample window: `2020-01-01` to `2024-12-31`

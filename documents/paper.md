@@ -1,5 +1,8 @@
 # NVDA Risk Analysis: Diagnostics-First Reproducible Pipeline
 
+> **Legacy synthetic demonstration.** These historical outputs are not observed NVIDIA risk findings. Use the [verified observed-data results](verified/RESULTS.md) and read the [data audit](DATA_AUDIT.md).
+
+
 +++ {"part": "abstract"}
 
 This project develops a reproducible and offline-first risk analysis system for NVDA

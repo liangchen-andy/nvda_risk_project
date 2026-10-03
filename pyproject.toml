@@ -190,7 +190,8 @@ useless-overload-body = "error"
 # ======================================================================================
 
 [tool.pytest.ini_options]
-addopts = "--pdbcls=pdbp:Pdb --cov --cov-report=term-missing --cov-fail-under=80"
+# Observed-data tests use requirements-verified.txt and their own CI job.
+addopts = "--pdbcls=pdbp:Pdb --cov --cov-report=term-missing --cov-fail-under=80 --ignore=tests/verified"
 filterwarnings = [  ]
 markers = [
   "wip: Tests that are work-in-progress.",
