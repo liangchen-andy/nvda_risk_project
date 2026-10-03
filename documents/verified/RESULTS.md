@@ -31,7 +31,7 @@ VaR and ES are negative return thresholds, not positive loss amounts. Drawdown u
 
 Descriptive daily return regression on the DGS10 yield level (HAC, 5 lags): coefficient 0.000167 per percentage point of yield, p-value 0.7776, R² 0.000047. This is an association, not a causal or tradable forecast.
 
-Coverage tests do not establish independence, ES calibration, or future predictive performance. Normal and historical models use the same forecast dates. GARCH results from the legacy demo are excluded.
+Coverage tests do not establish independence, ES calibration, or future predictive performance. Normal and historical models use the same forecast dates. GARCH is not implemented in this workflow.
 
 USD results exclude EUR/USD risk, trading costs and portfolio diversification. S&P 500 is a price-index benchmark; adjusted NVDA prices and vendor histories can be revised.
 

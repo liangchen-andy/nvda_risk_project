@@ -1,13 +1,8 @@
 .venv/
-.pixi/
 .pytest_cache/
-.coverage
-CLAUDE.md
-GEMINI.md
-node_modules/
-_build/
 __pycache__/
 *.pyc
+.coverage
+coverage.xml
 .ipynb_checkpoints/
 .DS_Store
-bld/

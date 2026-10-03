@@ -1,9 +1,9 @@
 # Data correction and workflow status
 
 The portfolio workflow is now `scripts/verified_analysis.py`. Its inputs and outputs
-are in `data/verified/` and `documents/verified/`. The original Pytask workflow is
-retained as a legacy synthetic demonstration; it is not the source of the README's
-observed-data findings.
+are in `data/verified/` and `documents/verified/`. The original synthetic Pytask workflow has
+been removed from the current tree. It is not the source of the README's observed-data
+findings; its history remains available in Git.
 
 ## Findings in the legacy workflow
 
@@ -46,13 +46,33 @@ Plots have explicit units and fail visibly on export errors. The new CI job runs
 targeted regression tests and rebuilds the observed-data results independently of
 the legacy document toolchain.
 
-## Reading older artifacts
+## Repository cleanup
 
-`documents/paper.md`, `documents/presentation.md`, the root PDFs,
-`documents/public/` and `documents/tables/` belong to the legacy demonstration.
-Their old numbers are retained for traceability, not as current observed-data
-findings. Use [verified results](verified/RESULTS.md) for the portfolio.
+The current tree keeps one observed-data workflow, its tests and CI, the archived
+vendor input bundle, portfolio results and charts, the source ledger, this audit,
+README, citation and license. Derived CSVs remain deliberately: they make the
+analysis auditable and are directly usable in downstream reporting tools. Archived
+vendor responses remain necessary for offline builds and source-hash verification.
 
-The verified workflow uses a separate Python 3.12 environment; the legacy Pixi
-environment remains Python 3.14. The original test suite and PDF builds have not
-been revalidated as part of this change. No new full-repository coverage claim is made.
+Removed categories:
+
+| Category | Why it is no longer needed |
+|---|---|
+| `src/nvda_risk_project/` and its synthetic snapshots | Superseded by the observed-data workflow |
+| Original analysis/data-management/final tests | Covered the retired workflow rather than the current script |
+| Old paper, slides, PDFs, figures and tables | Synthetic results could be mistaken for current findings |
+| `docs_template/` and MyST configuration | A separate template documentation site is no longer maintained |
+| Pixi lockfile, old package/build configuration | Dedicated to the retired Python 3.14 package and Pytask workflow |
+| Node package files, Vite and document styles | Used only for the removed slides/site build |
+| Old CI, Codecov and pre-commit configuration | Referenced removed tooling or the retired test suite |
+| Generic issue/PR templates and spelling/lint settings | Unused template scaffolding |
+
+`pyproject.toml` now only configures discovery of the current tests. The existing
+observed-data CI remains active, and Dependabot's GitHub Actions update configuration
+remains useful. The MIT license and original copyright notice are preserved.
+
+For the complete pre-cleanup tree, see
+[commit 63afd0a](https://github.com/liangchen-andy/nvda_risk_project/tree/63afd0aafbfad0fe0c0fddf4a762c73c6829ab31).
+Removed files can be recovered from that commit without reintroducing synthetic
+findings into the portfolio. GARCH, independence and ES calibration tests are still
+future work. No historical coverage percentage is claimed for the current workflow.
