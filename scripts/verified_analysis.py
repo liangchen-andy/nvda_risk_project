@@ -1,4 +1,4 @@
-"""Observed-data portfolio workflow, independent of the legacy synthetic demo.
+"""Observed-data portfolio workflow with archived vendor inputs.
 
 Run from the repository root: python scripts/verified_analysis.py
 Refreshing vendor responses is explicit: append --refresh.
@@ -279,7 +279,7 @@ def build(output: Path = OUTPUT) -> dict:
     lines += ["", "## Interpretation and limits", "",
               "VaR and ES are negative return thresholds, not positive loss amounts. Drawdown uses month-end observations and can miss deeper intramonth losses. Beta uses raw returns rather than risk-free-adjusted CAPM returns.", "",
               f"Descriptive daily return regression on the DGS10 yield level (HAC, 5 lags): coefficient {metrics['yield_level_beta']:.6f} per percentage point of yield, p-value {metrics['yield_level_pvalue']:.4f}, R² {metrics['yield_level_r_squared']:.6f}. This is an association, not a causal or tradable forecast.", "",
-              "Coverage tests do not establish independence, ES calibration, or future predictive performance. Normal and historical models use the same forecast dates. GARCH results from the legacy demo are excluded.", "",
+              "Coverage tests do not establish independence, ES calibration, or future predictive performance. Normal and historical models use the same forecast dates. GARCH is not implemented in this workflow.", "",
               "USD results exclude EUR/USD risk, trading costs and portfolio diversification. S&P 500 is a price-index benchmark; adjusted NVDA prices and vendor histories can be revised.", "",
               "Liquidity is a turnover proxy; historical split-adjusted prices multiplied by vendor share volume are not an audited execution-capacity estimate. Inspect the vendor's split/volume conventions before economic use.", "",
               "Validation checks demonstrate input integrity and calculation consistency, not that the vendor data or the model is infallible."]

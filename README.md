@@ -69,7 +69,7 @@ These are demonstrated Python and analytical reporting capabilities. SQL data mo
 
 ## Reproduce the Observed-Data Analysis
 
-Use **Python 3.12** and a separate virtual environment. The verified workflow does not require the legacy Pixi, browser-export or LaTeX toolchain.
+Use **Python 3.12** and a virtual environment. The workflow requires no browser-export or LaTeX toolchain.
 
 ```bash
 git clone https://github.com/liangchen-andy/nvda_risk_project.git
@@ -91,7 +91,7 @@ Install dependencies, run checks and rebuild:
 
 ```bash
 python -m pip install -r requirements-verified.txt
-python -m pytest -o addopts='' tests/verified -q
+python -m pytest -q
 python scripts/verified_analysis.py
 ```
 
@@ -124,11 +124,10 @@ The descriptive yield-level regression has very low explanatory power (R² ≈ 0
 | `data/verified/` | Archived observed inputs and source ledger |
 | `documents/verified/` | Current results, panels, forecasts, validation and figures |
 | `tests/verified/` | Regression tests for the observed-data workflow |
-| `src/nvda_risk_project/` | Original modular Pytask pipeline, retained as a legacy demonstration |
-| `documents/DATA_AUDIT.md` | Data correction and remaining legacy limitations |
+| `documents/DATA_AUDIT.md` | Data correction, cleanup rationale and historical reference |
 
-**Earlier public results were generated from synthetic price snapshots and artificial macro inputs.** They are retained for traceability, but are not observed NVIDIA risk findings. The original paper, presentation, root PDFs, `documents/public/` and `documents/tables/` belong to that legacy demonstration. Its passing consistency checks did not establish data authenticity. See the [data audit](documents/DATA_AUDIT.md).
+**Earlier public results were generated from synthetic price snapshots and artificial macro inputs.** The obsolete workflow, reports and dedicated build tools have been removed from the current tree. Their history remains available in Git; the [data audit](documents/DATA_AUDIT.md) explains the correction. Passing consistency checks on the old workflow did not establish data authenticity.
 
-The verified workflow currently compares historical and normal VaR. Legacy GARCH results are excluded. Further work could add GARCH with explicit convergence handling, independence and ES tests, EUR exposure analysis, and a SQL/Power BI reporting layer.
+The workflow currently compares historical and normal VaR; GARCH is not part of the current implementation. Further work could add GARCH with explicit convergence handling, independence and ES tests, EUR exposure analysis, and a SQL/Power BI reporting layer.
 
 **Author:** Liangchen Chen
