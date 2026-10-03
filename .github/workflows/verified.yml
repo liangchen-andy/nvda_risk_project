@@ -1,0 +1,22 @@
+name: Verified observed-data portfolio
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-verified.txt
+      - run: python -m pip install -r requirements-verified.txt
+      - run: python -m pytest -o addopts='' tests/verified -q
+      - run: python scripts/verified_analysis.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-observed-results
+          path: documents/verified/

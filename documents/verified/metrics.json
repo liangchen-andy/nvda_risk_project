@@ -1,0 +1,21 @@
+{
+  "sample_start": "2020-01-02",
+  "sample_end": "2024-12-31",
+  "daily_observations": 1258,
+  "monthly_observations": 60,
+  "annualized_monthly_volatility": 0.4986891221777431,
+  "daily_var_95": -0.05091355362880422,
+  "daily_es_95": -0.06943371020899343,
+  "monthly_var_95": -0.1699198090610176,
+  "monthly_es_95": -0.23459308284088817,
+  "month_end_max_drawdown": -0.6282062398946188,
+  "monthly_beta": 1.6398890415323712,
+  "latest_252_session_beta": 2.6659043416101604,
+  "median_monthly_mean_dollar_volume": 10134751731.212091,
+  "yield_level_beta": 0.00016668825641474427,
+  "yield_level_pvalue": 0.7775681111532662,
+  "yield_level_r_squared": 4.692848508325298e-05,
+  "oos_start": "2020-12-31",
+  "oos_end": "2024-12-31",
+  "oos_dates": 1006
+}

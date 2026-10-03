@@ -38,27 +38,43 @@ RISK_FUNCTIONS = {
 }
 
 
-for dimension in RISK_DIMENSIONS:
+def _run_risk_module(
+    dimension: str,
+    panel_data: Path = PROCESSED_DATA / "panel_monthly.csv",
+    panel_daily_data: Path = PANEL_DAILY_DATA,
+    macro_raw_data: Path = RAW_DATA / "macro_monthly.csv",
+    produces: Path = ANALYSIS_OUTPUT / "macro_risk.csv",
+) -> None:
+    """Run one risk module and persist metrics as CSV."""
+    produces.parent.mkdir(parents=True, exist_ok=True)
+    if dimension == "macro":
+        panel_daily = pd.read_parquet(panel_daily_data)
+        macro_monthly = pd.read_csv(macro_raw_data, parse_dates=["date"])
+        macro_daily_panel = build_daily_dgs10_panel(panel_daily=panel_daily, macro_monthly=macro_monthly)
+        output = estimate_macro_risk(macro_daily_panel).assign(risk_dimension=dimension)
+    else:
+        panel = pd.read_csv(panel_data, parse_dates=["month"])
+        output = RISK_FUNCTIONS[dimension](panel).assign(risk_dimension=dimension)
+    output.to_csv(produces, index=False)
 
-    @pytask.task(id=dimension)
-    def task_run_risk_module(
-        dimension: str = dimension,
+
+def _make_risk_task(dimension: str):
+    # Bind plain functions in module globals so repeated in-process builds can
+    # rediscover all five tasks after pytask consumes its decorator registry.
+    def task(
         panel_data: Path = PROCESSED_DATA / "panel_monthly.csv",
         panel_daily_data: Path = PANEL_DAILY_DATA,
         macro_raw_data: Path = RAW_DATA / "macro_monthly.csv",
         produces: Path = ANALYSIS_OUTPUT / f"{dimension}_risk.csv",
     ) -> None:
-        """Run one risk module and persist metrics as CSV."""
-        produces.parent.mkdir(parents=True, exist_ok=True)
-        if dimension == "macro":
-            panel_daily = pd.read_parquet(panel_daily_data)
-            macro_monthly = pd.read_csv(macro_raw_data, parse_dates=["date"])
-            macro_daily_panel = build_daily_dgs10_panel(panel_daily=panel_daily, macro_monthly=macro_monthly)
-            output = estimate_macro_risk(macro_daily_panel).assign(risk_dimension=dimension)
-        else:
-            panel = pd.read_csv(panel_data, parse_dates=["month"])
-            output = RISK_FUNCTIONS[dimension](panel).assign(risk_dimension=dimension)
-        output.to_csv(produces, index=False)
+        _run_risk_module(dimension, panel_data, panel_daily_data, macro_raw_data, produces)
+
+    task.__name__ = f"task_run_{dimension}_risk"
+    return task
+
+
+for dimension in RISK_DIMENSIONS:
+    globals()[f"task_run_{dimension}_risk"] = _make_risk_task(dimension)
 
 
 def task_create_rolling_volatility(
